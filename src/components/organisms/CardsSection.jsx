@@ -1,7 +1,7 @@
-// src/components/organisms/CardsSection.jsx
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Card from '../molecules/Card';
+
 
 const SectionStyled = styled.section`
     width: 90%;
@@ -22,20 +22,10 @@ function CardsSection() {
 
     useEffect(() => {
         fetch('https://dragonball-api.com/api/characters')
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error('Error fetching data');
-            })
+            .then(response => response.json())
             .then(data => setCharacters(data))
-            .catch(error => console.error("Error: ", error));
+            .catch(error => console.log(error));
     }, []);
-
-    // Si `characters` no es un array, muestra un mensaje de error o maneja el caso.
-    if (!Array.isArray(characters)) {
-        return <p>No se pudieron cargar los personajes.</p>;
-    }
 
     return (
         <DivStyled>
@@ -44,9 +34,11 @@ function CardsSection() {
                     <Card
                         key={character.id}
                         name={character.name}
-                        imageUrl={character.imageUrl}
-                        species={character.species}
+                        src={character.image}
                         status={character.status}
+                        species={character.species}
+                        origin={character.origin}
+                        location={character.location}
                     />
                 ))}
             </SectionStyled>
