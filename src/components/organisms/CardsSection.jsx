@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Card from '../molecules/Card';
 
-
 const SectionStyled = styled.section`
     width: 90%;
     display: flex;
@@ -23,7 +22,10 @@ function CardsSection() {
     useEffect(() => {
         fetch('https://dragonball-api.com/api/characters')
             .then(response => response.json())
-            .then(data => setCharacters(data))
+            .then(data => {
+                console.log(data); 
+                setCharacters(data.items || []); // Access the 'items' array
+            })
             .catch(error => console.log(error));
     }, []);
 
@@ -34,11 +36,9 @@ function CardsSection() {
                     <Card
                         key={character.id}
                         name={character.name}
-                        src={character.image}
-                        status={character.status}
+                        imageUrl={character.image} // Changed from 'src' to 'imageUrl'
                         species={character.species}
-                        origin={character.origin}
-                        location={character.location}
+                        status={character.status}
                     />
                 ))}
             </SectionStyled>
