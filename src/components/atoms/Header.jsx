@@ -1,17 +1,15 @@
-import React from 'react';
 import styled from 'styled-components';
 
-function Header() {
-    const HeaderStyled = styled.header`
-        font-size: 2rem;
-        margin: 2rem 0;
-        color: #fff;
-    `;
+const StyledHeader = styled.header`
+    background-color: #f8f9fa;
+    padding: 1rem;
+`;
 
+function Header() {
     return (
-        <HeaderStyled>
-            Dragon Ball Characters
-        </HeaderStyled>
+        <StyledHeader>
+            <h1>Bienvenido</h1>
+        </StyledHeader>
     );
 }
 
