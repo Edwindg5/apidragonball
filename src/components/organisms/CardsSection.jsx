@@ -23,8 +23,7 @@ function CardsSection() {
         fetch('https://dragonball-api.com/api/characters')
             .then(response => response.json())
             .then(data => {
-                console.log(data); 
-                setCharacters(data.items || []); // Access the 'items' array
+                setCharacters(data.items);
             })
             .catch(error => console.log(error));
     }, []);
@@ -32,13 +31,15 @@ function CardsSection() {
     return (
         <DivStyled>
             <SectionStyled>
-                {characters.map(character => (
+                {Array.isArray(characters) && characters.map(character => (
                     <Card
                         key={character.id}
                         name={character.name}
-                        imageUrl={character.image} // Changed from 'src' to 'imageUrl'
-                        species={character.species}
-                        status={character.status}
+                        imageUrl={character.image}
+                        ki={character.ki}
+                        maxKi={character.maxKi}
+                        race={character.race}
+                        gender={character.gender}
                     />
                 ))}
             </SectionStyled>

@@ -4,7 +4,7 @@ import Image from '../atoms/Image';
 import Title from '../atoms/Title';
 import Paragraph from '../atoms/Paragraph';
 
-function Card({ name, imageUrl, species, status }) {
+function Card({ name, imageUrl, ki, maxKi, race, gender }) {
     const CardStyled = styled.div`
         background-color: #bbbdc7;
         padding: 1rem;
@@ -19,12 +19,21 @@ function Card({ name, imageUrl, species, status }) {
         }
     `;
 
+    const ImageStyled = styled.img`
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+    `;
+
     return (
         <CardStyled>
-            <Image src={imageUrl} alt={name} />
+            <ImageStyled src={imageUrl} alt={name} />
             <Title>{name}</Title>
-            <Paragraph>Species: {species}</Paragraph>
-            <Paragraph>Status: {status}</Paragraph>
+            <Paragraph>Ki: {ki}</Paragraph>
+            <Paragraph>Max Ki: {maxKi}</Paragraph>
+            <Paragraph>Race: {race}</Paragraph>
+            <Paragraph>Gender: {gender}</Paragraph>
         </CardStyled>
     );
 }
